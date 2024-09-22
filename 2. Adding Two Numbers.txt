@@ -1,0 +1,57 @@
+Adding Two Numbers:
+
+The "Add Two Numbers" problem is a common coding challenge that involves adding two numbers represented as linked lists. Each node in the linked list represents a single digit, and the digits are stored in reverse order. In this post, we'll explore a solution using C++.
+Cpp:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* dummyHead = new ListNode(0);
+        ListNode* current = dummyHead;
+        int carry = 0;
+
+        while (l1 != nullptr || l2 != nullptr) {
+            int x = (l1 != nullptr) ? l1->val : 0;
+            int y = (l2 != nullptr) ? l2->val : 0;
+
+            int sum = x + y + carry;
+            carry = sum / 10;
+
+            current->next = new ListNode(sum % 10);
+            current = current->next;
+
+            if (l1 != nullptr) l1 = l1->next;
+            if (l2 != nullptr) l2 = l2->next;
+        }
+
+        if (carry > 0) {
+            current->next = new ListNode(carry);
+        }
+
+        return dummyHead->next;
+    }
+};
+
+Explanation of the Code:
+
+      1.Initialization: We start by creating a dummy head node to simplify the handling of the result linked list. A pointer current is used to track the current position in the 
+        result list, and a carry variable is initialized to zero.
+      2.While Loop: The loop continues until both linked lists are fully traversed. Inside the loop:
+            o Extract values from l1 and l2, defaulting to zero if a list has been fully traversed.
+            o Calculate the sum of the two values plus any carry from the previous operation.
+            o Update the carry for the next iteration and create a new node with the digit to store in the result list.
+      3.Final Carry Check: After the loop, if there's any carry left, a new node is added to the result list.
+      4.Return the Result: The function returns the next node of the dummy head, which points to the actual result.
+
+This solution efficiently adds two numbers represented by linked lists in O(max(m, n)) time complexity, where m and n are the lengths of the input lists. It's a great example of handling data structures in a real-world problem.
+
