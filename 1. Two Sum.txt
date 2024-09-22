@@ -1,0 +1,49 @@
+Two Sum Problem
+
+The "Two Sum" problem is a classic algorithmic challenge often encountered in programming interviews. The objective is to find two indices in an array of integers such that the sum of the elements at these indices equals a given target. Let's explore a simple yet effective solution using C++.
+
+Problem Statement;
+Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target. You may assume that each input has exactly one solution, and you may not use the same element twice.
+
+Example Cases
+Input: nums = [2, 7, 11, 15], **target = 9 **Output:**[0, 1] *Explanation:* Becausenums[0] + nums[1] == 9, we return [0, 1]`.
+
+Input: nums = [3, 2, 4], **target = 6 **Output:**[1, 2] *Explanation:* Becausenums[1] + nums[2] == 6, we return [1, 2]`.
+
+Input: nums = [3, 3], **target = 6 **Output:**[0, 1] *Explanation:* Becausenums[0] + nums[1] == 6, we return [0, 1]`.
+
+C++ Solution
+Here's a straightforward implementation of the solution using nested loops:
+
+cpp:
+
+#include <vector>
+
+class Solution {
+public:
+    std::vector<int> twoSum(std::vector<int>& nums, int target) {
+        int n = nums.size();
+        for(int i = 0; i < n - 1; i++) {
+            for(int j = i + 1; j < n; j++) {
+                if(nums[i] + nums[j] == target) {
+                    return {i, j};
+                }
+            }
+        }
+        return {};
+    }
+};
+
+Explanation of the Code:
+
+  Initialization: We start by determining the size of the input array nums.
+
+  Nested Loops: The outer loop iterates through each element of the array. For each element, the inner loop checks the subsequent elements.
+
+  Condition Check: If the sum of the two elements equals the target, we return their indices as a vector.
+
+  Return Statement: If no valid pair is found (though the problem guarantees one), we return an empty vector.
+
+
+
+The provided solution is easy to understand, leveraging a brute-force approach to solve the problem. While it operates in O(n²) time complexity, there are more efficient methods (like using a hash map) that can achieve O(n) complexity. This makes the problem an excellent starting point for those new to algorithm design.
