@@ -1,0 +1,35 @@
+4. Median of Two Sorted Arrays
+This C++ program defines a function findMedianSortedArrays that takes two sorted arrays as input and returns the median of the merged array. It first combines both input arrays into a new array, sorts it, and then calculates the median. If the number of elements is odd, the middle element is returned; if it's even, the average of the two middle elements is calculated.
+
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        vector<int> merge;
+        for(int i=0;i<m;i++){
+            merge.push_back(nums1[i]);
+        }
+        for(int i=0;i<n;i++){
+            merge.push_back(nums2[i]);
+        }
+        sort(merge.begin(),merge.end());
+        int med = merge.size();
+        if(med%2==1){
+            return static_cast<double>(merge[med/2]);
+        }
+        else{
+            double m1 = merge[(med/2)-1];
+            double m2 = merge[med/2];
+            double avg=(m1+m2)/2.0;
+            return avg;
+        }
+    }
+};
+
+Key Points:
+•	Uses vectors to merge the input arrays.
+•	Handles both even and odd-sized merged arrays.
+•	Efficiently calculates the median by sorting the merged array.
+
+
