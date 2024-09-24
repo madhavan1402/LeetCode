@@ -1,0 +1,28 @@
+Reverse Integer
+Description:
+This C++ program reverses the digits of a given integer. It first checks whether the input integer falls within the valid 32-bit signed integer range (from -2^31 to 2^31 - 1). If the integer is within this range, the function extracts digits one by one and constructs the reversed integer. If the reversed integer overflows the 32-bit range, the function returns 0 to indicate an invalid result.
+
+class Solution {
+public:
+    long reverse(long x) {
+       long rev = 0;
+       if(pow(-2,31) <=x || x<=pow(2,31)-1){
+        while(x != 0){
+            int re = x%10;
+            rev = (rev*10)+ re;
+            x = x/10; 
+        }
+       } 
+       if(pow(-2,31) <= rev && rev<=pow(2,31)-1 ){
+        return rev;
+       }
+       else{
+        return 0;
+       }
+    }
+};
+Key Points:
+•	Uses modulo and division to reverse the digits of the integer.
+•	Handles 32-bit integer overflow by checking the reversed result against valid bounds.
+•	Returns 0 if the reversed integer is out of the valid range.
+
